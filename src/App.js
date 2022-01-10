@@ -1,6 +1,14 @@
 import './App.css';
 import SearchBar from "./Components/SearchBar"
-import DataTable from './Components/Table';
+import RenderTable from './Components/RenderTable';
+
+/*To do list:
+-add input component to searchbar
+-capture input from searchbar and pass to app
+-create table to display data
+
+-begin tie in to SWAPI
+*/
 
 function App() {
   return (
@@ -10,7 +18,7 @@ function App() {
 
       <SearchBar/>
 
-      <DataTable/>
+      <RenderTable/>
 
 
       </header>
