@@ -1,14 +1,16 @@
-import './App.css';
+import './App.css'
 import SearchBar from "./Components/SearchBar"
-import RenderTable from './Components/RenderTable';
+import RenderTable from './Components/RenderTable'
+import axios from 'axios'
+
 
 /*To do list:
--add input component to searchbar
 -capture input from searchbar and pass to app
 -create table to display data
 
 -begin tie in to SWAPI
 */
+
 
 function App() {
   return (
