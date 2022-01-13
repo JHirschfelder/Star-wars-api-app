@@ -8,19 +8,6 @@ class SearchBar extends React.Component {
     this.state = [];
   }
 
-  componentDidMount() {
-    const randomSet = this.GenerateRandomSet()
-    
-    console.log(randomSet)
-
-    axios.get('https://swapi.dev/api/people/83/')
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });    
-  }
 
   GenerateRandomSet(){
     const set = new Set()
