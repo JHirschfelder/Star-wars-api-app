@@ -5,7 +5,7 @@ import React from 'react';
 import axios from 'axios'
 
 
-/*To do list:
+/*Notes:
 - send data to rendertable function
 - update the pulled data whenever displayGroup is updated. 
 
@@ -39,7 +39,6 @@ class App extends React.Component {
     axios.get('https://swapi.dev/api/people/') 
       .then(response => {
         this.setState({peopleCount: response.data.count})
-        //console.log(this.state.peopleCount)
       })
       .catch(error => {
         console.log(error);
