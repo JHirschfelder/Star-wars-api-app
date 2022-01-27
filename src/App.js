@@ -6,10 +6,16 @@ import axios from 'axios'
 
 
 /*To do list:
--capture input from searchbar and pass to app
--create table to display data
+- send data to rendertable function
+- update the pulled data whenever displayGroup is updated. 
 
--begin tie in to SWAPI
+Name
+Birth date
+Height
+Mass
+Homeworld
+Species
+
 */
 
 
@@ -18,29 +24,44 @@ class App extends React.Component {
     super(props);
     this.state = {
       peopleCount: 0,
-      displayGroup: []
+      displayGroup: [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10],
+      displayData: []
     }
   }
 
   componentDidMount() {
+    this.checkPeopleCount()
+    this.getDisplayData()
+
+  }
+
+  checkPeopleCount() {
     axios.get('https://swapi.dev/api/people/') 
       .then(response => {
         this.setState({peopleCount: response.data.count})
-        this.generateRandomSet()
+        //console.log(this.state.peopleCount)
       })
       .catch(error => {
         console.log(error);
-      });    
+      });
   }
 
-  generateRandomSet(){
-    const set = new Set()
-    while(set.size < 10) {
-      set.add(Math.floor(Math.random() * this.state.peopleCount) + 1)
-    }
-    console.log (set)
-    return set
+  getDisplayData() {
+    let i
+    for(i=1; i < this.state.displayGroup.length+1; i++) {
+      let person = 'https://swapi.dev/api/people/'+ i +'/'
+      axios.get(person)
+        .then(response => {
+          this.setState ((prevState) => {
+            return {
+              displayData: [...prevState.displayData, response.data]
+            }
+          })
+          console.log(this.state.displayData)
+        })
+     }
   }
+
 
   render() {
 
