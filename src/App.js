@@ -23,44 +23,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      peopleCount: 0,
-      displayGroup: [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10],
+      rawData: [],
       displayData: []
     }
   }
 
   componentDidMount() {
-    this.checkPeopleCount()
-    this.getDisplayData()
+    this.getData()
 
   }
 
-  checkPeopleCount() {
+  getData() {
     axios.get('https://swapi.dev/api/people/') 
       .then(response => {
-        this.setState({peopleCount: response.data.count})
+        this.setState({displayData: response.data.results})
       })
       .catch(error => {
         console.log(error);
       });
   }
-
-  getDisplayData() {
-    let i
-    for(i=1; i < this.state.displayGroup.length+1; i++) {
-      let person = 'https://swapi.dev/api/people/'+ i +'/'
-      axios.get(person)
-        .then(response => {
-          this.setState ((prevState) => {
-            return {
-              displayData: [...prevState.displayData, response.data]
-            }
-          })
-          console.log(this.state.displayData)
-        })
-     }
-  }
-
 
   render() {
 
